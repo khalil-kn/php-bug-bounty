@@ -1,0 +1,12 @@
+# Ignore uploaded files
+/uploads/
+
+# Ignore environment files (if you store DB credentials here)
+.env
+
+# Ignore OS/system files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE/editor folders (optional, for VS Code)
+.vscode/
