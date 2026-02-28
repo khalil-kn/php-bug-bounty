@@ -27,7 +27,7 @@ if ($result->num_rows > 0) {
         echo "<p>" . nl2br(htmlspecialchars($row['description'])) . "</p>";
         echo "<p>Target URL: <a href='" . htmlspecialchars($row['target_url']) . "'>" . htmlspecialchars($row['target_url']) . "</a></p>";
         echo "<p>Submitted at: " . $row['created_at'] . "</p>";
-        echo "<img src='" . htmlspecialchars($row['screenshot']) . "' alt='Screenshot' style='max-width:400px;'><br>";
+        echo "<img src='uploads/" . htmlspecialchars($row['screenshot']) . "' alt='Screenshot' style='max-width:400px;'><br>";
         echo "</div>";
     }
 } else {

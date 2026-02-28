@@ -10,3 +10,5 @@ Thumbs.db
 
 # Ignore IDE/editor folders (optional, for VS Code)
 .vscode/
+
+*.txt
