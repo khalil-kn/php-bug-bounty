@@ -114,6 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html>
 <head>
     <title>Submit Bug Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
 

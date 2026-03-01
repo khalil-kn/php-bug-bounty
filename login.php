@@ -2,7 +2,7 @@
 session_set_cookie_params([
     'lifetime' => 0,
     'path' => '/',
-    'secure' => false,
+    'secure' => false, 
     'httponly' => true,
     'samesite' => 'Strict'
 ]);
@@ -15,7 +15,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = trim($_POST["username"]);
     $password = $_POST["password"];
 
-    // Prepare statement
     $stmt = $conn->prepare("SELECT id, password FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
@@ -43,21 +42,67 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Admin Login</title>
+    <meta charset="UTF-8">
+    <title>Admin Login | CyberWatch</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
 
-<h2>Admin Login</h2>
+<body class="min-h-screen bg-gradient-to-br from-black via-gray-900 to-red-950 text-gray-200">
 
-<?php if (!empty($error)) echo "<p>$error</p>"; ?>
+<!-- NAVBAR -->
+<nav class="bg-black/80 backdrop-blur-md border-b border-red-900/40">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="text-red-500 font-bold text-xl tracking-wider">
+            CYBERWATCH
+        </div>
+        <div class="space-x-6 text-sm">
+            <a href="index.php" class="hover:text-red-400 transition">Home</a>
+            <a href="report.php" class="hover:text-red-400 transition">Submit Report</a>
+        </div>
+    </div>
+</nav>
 
-<form method="POST">
-    <input type="text" name="username" placeholder="Username" required><br><br>
-    <input type="password" name="password" placeholder="Password" required><br><br>
-    <button type="submit">Login</button>
-</form>
+<!-- LOGIN CARD -->
+<div class="flex items-center justify-center py-20 px-6">
+
+    <div class="w-full max-w-md bg-gray-900/80 border border-red-900/40 rounded-2xl p-8 shadow-2xl">
+
+        <h1 class="text-3xl font-bold text-red-500 mb-8 text-center">
+            Admin Access
+        </h1>
+
+        <?php if (!empty($error)): ?>
+            <div class="mb-6 bg-red-900/40 border border-red-700 text-red-300 px-4 py-3 rounded-lg text-sm">
+                <?php echo htmlspecialchars($error); ?>
+            </div>
+        <?php endif; ?>
+
+        <form method="POST" class="space-y-6">
+
+            <div>
+                <label class="block text-sm mb-2">Username</label>
+                <input type="text" name="username" required
+                       class="w-full bg-black border border-gray-700 rounded-lg px-4 py-2 focus:border-red-500 focus:outline-none">
+            </div>
+
+            <div>
+                <label class="block text-sm mb-2">Password</label>
+                <input type="password" name="password" required
+                       class="w-full bg-black border border-gray-700 rounded-lg px-4 py-2 focus:border-red-500 focus:outline-none">
+            </div>
+
+            <button type="submit"
+                class="w-full bg-red-700 hover:bg-red-800 py-3 rounded-lg font-semibold tracking-wide transition shadow-lg">
+                Login
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
 
 </body>
 </html>
